@@ -4,7 +4,7 @@ from sqlalchemy import text
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./email.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:password@rds-endpoint/clarusway'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
