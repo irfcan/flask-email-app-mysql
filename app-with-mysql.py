@@ -1,3 +1,5 @@
+# Part 2 Flask MySQL application
+
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
