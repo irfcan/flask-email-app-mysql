@@ -6,18 +6,21 @@ from sqlalchemy import text
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:password@rds-endpoint/clarusway'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:Clarusway_1@flask-mysql-db.cyd6yu6aew8v.us-east-1.rds.amazonaws.com/clarusway'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 with app.app_context():
+    
     drop_table = text('DROP TABLE IF EXISTS users;')
+
     users_table = text(""" 
     CREATE TABLE users(
-    username VARCHAR NOT NULL PRIMARY KEY,
-    email VARCHAR);
+    username VARCHAR(50) NOT NULL PRIMARY KEY,
+    email VARCHAR(100));
     """)
+
     data = text("""
     INSERT INTO users
     VALUES
@@ -27,6 +30,7 @@ with app.app_context():
         ("uras", "uras@mercedes.com"),
 	    ("ares", "ares@porche.com");
         """)
+    
     db.session.execute(drop_table)
     db.session.execute(users_table)
     db.session.execute(data)
